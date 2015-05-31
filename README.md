@@ -11,8 +11,9 @@ DFSS is not your only tools for increase security. ENCRYPT YOUR DISK, STUPID!
 
 <code>git clone https://github.com/area31/dfss.git ; mv dfss /opt/hackstore/</code>
 
-5- Config your USB device:
-<code>/opt/hackstore/dfss/dfss.conf</code>
+3- Config your USB device:
+
+<code>vi /opt/hackstore/dfss/dfss.conf</code>
 
 
 4- Include daemon in /etc/crontab:
