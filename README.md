@@ -30,3 +30,6 @@ Compile new binary:
 
 <code>cd /opt/hackstore/dfss/ ; shc -r -T -f dfss.sh && mv dfss.sh.x dfss</code>
 
+# More infos:
+
+For more infos in Portuguese Brazilian language: http://www.area31.net.br/wiki/DFSS_USBkiller
