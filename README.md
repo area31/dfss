@@ -24,9 +24,9 @@ DFSS is not your only tools for increase security. ENCRYPT YOUR DISK, STUPID!
 ## To regenerate binary file:
 Remove old files:
 
-<code>cd /opt/hackstore/dfss/ rm dfss.sh.x.c dfss</code>
+<code>cd /opt/hackstore/dfss/ ; rm dfss.sh.x.c dfss</code>
 
 Compile new binary:
 
-<code>shc -r -T -f dfss.sh && mv dfss.sh.x dfss</code>
+<code>cd /opt/hackstore/dfss/ ; shc -r -T -f dfss.sh && mv dfss.sh.x dfss</code>
 

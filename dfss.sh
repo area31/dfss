@@ -16,33 +16,32 @@ source ${CONFIG_FILE}
 if ! flock -n 666; then
 	exit 1
 else
-
 	echo 1 > /proc/sys/kernel/sysrq
-
-while [ 1 ]; do
-	CHECK_USB=$(lsusb|grep "${ID_VENDOR}:${ID_PRODUCT}"|wc -l)
-	if [ "${CHECK_USB}" -ne "0" ]; then
-		echo ${MSG_CONNECTED} > /dev/null
-	else
+	while [ 1 ]; do
 		CHECK_USB=$(lsusb|grep "${ID_VENDOR}:${ID_PRODUCT}"|wc -l)
 		if [ "${CHECK_USB}" -ne "0" ]; then
 			echo ${MSG_CONNECTED} > /dev/null
 		else
-			data_hora() { echo "[$(date +'%d/%m/%Y') $(date +'%H:%M:%S')]"; }
-			if [ "${CHOICE_DISCONNECTED}" = "reboot" ]; then
-				## Reboot
-				echo b > /proc/sysrq-trigger
-			elif [ "${CHOICE_DISCONNECTED}" = "shutdown" ]; then
-				## Shutdown
-					echo -e "$(data_hora)  ${DAEMON_NAME}: ${MSG_DISCONNECTED}... ${MSG_EXITING}\n" >> ${LOG}
-				echo o > /proc/sysrq-trigger
+			CHECK_USB=$(lsusb|grep "${ID_VENDOR}:${ID_PRODUCT}"|wc -l)
+			if [ "${CHECK_USB}" -ne "0" ]; then
+				echo ${MSG_CONNECTED} > /dev/null
+			else
+				data_hora() { echo "[$(date +'%d/%m/%Y') $(date +'%H:%M:%S')]"; }
+				if [ "${CHOICE_DISCONNECTED}" = "reboot" ]; then
+					## Reboot
+					echo -e "$(data_hora)  ${DAEMON_NAME}: ${MSG_DISCONNECTED}... ${MSG_EXITING} (${CHOICE_DISCONNECTED})\n" >> ${LOG}
+					echo b > /proc/sysrq-trigger
+				elif [ "${CHOICE_DISCONNECTED}" = "shutdown" ]; then
+					## Shutdown
+					echo -e "$(data_hora)  ${DAEMON_NAME}: ${MSG_DISCONNECTED}... ${MSG_EXITING} (${CHOICE_DISCONNECTED})\n" >> ${LOG}
+					echo o > /proc/sysrq-trigger
+				fi
 			fi
 		fi
-	fi
-	
-	# Intervalo
-	sleep ${INTERVALO_SEGUNDOS}
-done
+		
+		# Intervalo
+		sleep ${INTERVALO_SEGUNDOS}
+	done
 
 fi
 
