@@ -33,3 +33,4 @@ Compile new binary:
 # More infos:
 
 For more infos in Portuguese Brazilian language: http://www.area31.net.br/wiki/DFSS_USBkiller
+
