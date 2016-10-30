@@ -7,10 +7,10 @@
 
 CONFIG_FILE="${0}.conf"
 
-## Variáveis ##
+## Variables ##
 source ${CONFIG_FILE}
 
-## Funções ##
+## Functions ##
 
 {
 if ! flock -n 666; then
@@ -39,7 +39,7 @@ else
 			fi
 		fi
 		
-		# Intervalo
+		# Interval
 		sleep ${INTERVALO_SEGUNDOS}
 	done
 
